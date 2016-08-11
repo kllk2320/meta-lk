@@ -16,8 +16,20 @@ SRC_URI = "git://github.com/lxc/lxc.git;protocol=https;branch=master"
 S = "${WORKDIR}/git"
 # NOTE: the following library dependencies are unknown, ignoring: gnutls apparmor selinux seccomp
 #       (this is based on recipes that have previously been built and packaged)
-DEPENDS = "glibc-xilinx libcap bash"
-FILES_${PN}-dbg = "${libdir}/lxc/hooks/.debug/unmount-namespace"
+RDEPENDS_${PN} += "glibc-xilinx libcap bash"
+DEPENDS_${PN} += "glibc-xilinx libcap"
+
+FILES_${PN}-dbg += "{prefix}/src/"
+FILES_${PN}-dbg += "{prefix}/src/*"
+FILES_${PN}-dbg += "{sbindir}/.debug/"
+FILES_${PN}-dbg += "{sbindir}/.debug/*"
+FILES_${PN}-dbg += "{bindir}/.debug/"
+FILES_${PN}-dbg += "{bindir}/.debug/*"
+FILES_${PN}-dbg += "{libdir}/.debug/"
+FILES_${PN}-dbg += "{libdir}/.debug/*"
+FILES_${PN}-dbg += "${libdir}/lxc/hooks/.debug/unmount-namespace"
+FILES_${PN}-dbg += "${libdir}/lxc/.debug/"
+FILES_${PN}-dbg += "${libdir}/lxc/.debug/*"
 
 # NOTE: if this software is not capable of being built in a separate build directory
 # from the source, you should replace autotools with autotools-brokensep in the
@@ -35,8 +47,9 @@ EXTRA_OECONF = "--with-init-script=sysvinit \
                 "
 
 do_configure() {
-    build_p=$(pwd)
-    cd ${S} ; ./autogen.sh; cd $build_p
+#    build_p=$(pwd)
+#    cd ${S} ; ./autogen.sh; cd $build_p
+    cd ${S} ; ./autogen.sh; cd ${B}
     oe_runconf
 }
 

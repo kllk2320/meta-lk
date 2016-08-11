@@ -11,11 +11,19 @@ HOMEPAGE = "https://github.com/lxc/lxcfs/"
 # No information for SRC_URI yet (only an external source tree was specified)
 SRCREV ?= "${AUTOREV}"
 SRC_URI = "git://github.com/lxc/lxcfs.git;protocol=https;branch=master"
-
 S = "${WORKDIR}/git"
 
+#needs to apply a patch
+SRC_URI += "file://create-config-link-in-build-directory.patch"
+
+
 # NOTE: the following prog dependencies are unknown, ignoring: help2man
-DEPENDS = "fuse"
+RDEPENDS_${PN} = "fuse"
+DEPENDS_${PN} = "fuse"
+
+FILES_${PN} += "${datadir}/lxc/"
+FILES_${PN} += "${datadir}/lxc/*"
+
 # NOTE: if this software is not capable of being built in a separate build directory
 # from the source, you should replace autotools with autotools-brokensep in the
 # inherit line
@@ -31,7 +39,8 @@ EXTRA_OECONF = "--with-init-script=sysvinit \
                 --libexecdir=/usr/lib \
                 "
 do_configure() {
-    build_p=$(pwd)
-    cd ${S}; ./bootstrap.sh; cd $build_p
+#    build_p=$(pwd)
+#    cd ${S}; ./bootstrap.sh; cd $build_p
+    cd ${S}; ./bootstrap.sh; cd ${B}
     oe_runconf
 }

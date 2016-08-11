@@ -1,0 +1,23 @@
+commit 86f5aa333b2e769d336af7dd0e3e653727d10919
+Author: Liu Kui <kllk2320@gmail.com>
+Date:   Tue Jul 5 09:51:02 2016 +0800
+
+    Creates symbolic links of config/init/*/lxcfs* when building lxcfs
+    in a ddirectory different from the source directory
+
+diff --git a/configure.ac b/configure.ac
+index e7f47f7..5b1be2a 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -22,6 +22,11 @@ AC_CONFIG_FILES([
+ 	share/lxc.reboot.hook
+ 	tests/Makefile ])
+ 
++AC_CONFIG_LINKS([
++	config/init/sysvinit/lxcfs:config/init/sysvinit/lxcfs
++	config/init/systemd/lxcfs.service:config/init/systemd/lxcfs.service
++	config/init/upstart/lxcfs.conf:config/init/upstart/lxcfs.conf ])
++
+ LT_INIT
+ AC_PROG_CC
+ 
