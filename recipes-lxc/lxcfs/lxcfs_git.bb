@@ -18,11 +18,12 @@ SRC_URI += "file://create-config-link-in-build-directory.patch"
 
 
 # NOTE: the following prog dependencies are unknown, ignoring: help2man
-RDEPENDS_${PN} = "fuse"
-DEPENDS_${PN} = "fuse"
+RDEPENDS_${PN} = "libfuse fuse-utils"
+DEPENDS_${PN} = "libfuse"
 
 FILES_${PN} += "${datadir}/lxc/"
 FILES_${PN} += "${datadir}/lxc/*"
+FILES_${PN} += "${libdir}/liblxcfs.so"
 
 # NOTE: if this software is not capable of being built in a separate build directory
 # from the source, you should replace autotools with autotools-brokensep in the
