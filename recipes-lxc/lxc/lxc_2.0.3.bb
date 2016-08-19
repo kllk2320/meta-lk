@@ -4,16 +4,17 @@
 #
 # WARNING: the following LICENSE and LIC_FILES_CHKSUM values are best guesses - it is
 # your responsibility to verify that the values are complete and correct.
+HOMEPAGE = "https://github.com/lxc/lxc/"
+
 LICENSE = "LGPLv2.1"
 LIC_FILES_CHKSUM = "file://COPYING;md5=4fbd65380cdd255951079008b364516c"
 
-HOMEPAGE = "https://github.com/lxc/lxc/"
-
-DEFAULT_PREFERENCE = "-1"
-
 # No information for SRC_URI yet (only an external source tree was specified)
-SRCREV ?= "${AUTOREV}"
-SRC_URI = "git://github.com/lxc/lxc.git;protocol=https;branch=master"
+SRC_URI = "git://github.com/lxc/lxc.git;protocol=https;branch=stable-2.0;tag=lxc-2.0.3"
+SRCREV = "lxc-2.0.3"
+#SRC_URI = "https://linuxcontainers.org/downloads/lxc/lxc-2.0.3.tar.gz"
+#SRC_URI[md5sum] = "4a5654005924ec6f52eb9719520547d4"
+#SRC_URI[sha256sum] = "82df40a0cdd44639ee677d560be95348de48afa93a10a20e959dadb4431ee8d6"
 
 S = "${WORKDIR}/git"
 # NOTE: the following library dependencies are unknown, ignoring: gnutls apparmor selinux seccomp

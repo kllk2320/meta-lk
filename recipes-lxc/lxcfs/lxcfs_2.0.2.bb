@@ -4,16 +4,15 @@
 #
 # WARNING: the following LICENSE and LIC_FILES_CHKSUM values are best guesses - it is
 # your responsibility to verify that the values are complete and correct.
+HOMEPAGE = "https://github.com/lxc/lxcfs/"
+
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://COPYING;md5=3b83ef96387f14655fc854ddc3c6bd57"
 
-HOMEPAGE = "https://github.com/lxc/lxcfs/"
-
-DEFAULT_PREFERENCE = "-1"
-
 # No information for SRC_URI yet (only an external source tree was specified)
-SRCREV ?= "${AUTOREV}"
-SRC_URI = "git://github.com/lxc/lxcfs.git;protocol=https;branch=master"
+SRC_URI = "git://github.com/lxc/lxcfs.git;protocol=https;branch=stable-2.0;name=2.0.2;tag=lxcfs-2.0.2"
+SRCREV_2.0.2 ?= "lxcfs-2.0.2"
+
 S = "${WORKDIR}/git"
 
 #needs to apply a patch
@@ -26,7 +25,7 @@ DEPENDS_${PN} = "fuse"
 
 FILES_${PN} += "${datadir}/lxc/"
 FILES_${PN} += "${datadir}/lxc/*"
-FILES_${PN} += "${libdir}/liblxcfs.so"
+#FILES_${PN} += "${libdir}/liblxcfs.so"
 
 # NOTE: if this software is not capable of being built in a separate build directory
 # from the source, you should replace autotools with autotools-brokensep in the
